@@ -26,7 +26,6 @@ items = [
     ("Conditioner at Costco",
      10.00), ("Lahli Morning Protein Bites, Spinach Rustica (25.1 oz.)", 10.88),
     ("Rubbermaid Brilliance Food Storage Containers, 36 Piece Variety Set", 69.98)]
-
 # Function to generate a random item
 
 
@@ -61,15 +60,7 @@ def generate_receipt():
     total = round(subtotal + tax, 2)
     subtotal = round(subtotal, 2)  # Round the subtotal to two decimal places
 
-    # Create a GUI window to display the receipt
-    receipt_window = tk.Tk()
-    receipt_window.title(store_name + " Receipt")
-
-    # Create a Text widget to display the receipt content
-    receipt_text = tk.Text(receipt_window, wrap=tk.WORD)
-    receipt_text.pack()
-
-    # Build the receipt content
+    # Build the receipt content as a string
     receipt_content = []
     receipt_content.append(store_name + " Receipt")
     receipt_content.append("----------------")
@@ -85,17 +76,30 @@ def generate_receipt():
     receipt_content.append("----------------")
     receipt_content.append("Thank you for shopping at " + store_name + "!")
 
-    # Insert the receipt content into the Text widget
-    for line in receipt_content:
-        receipt_text.insert(tk.END, line + "\n")
-
-    # Start the GUI main loop
-    receipt_window.mainloop()
+    # Update the Text widget with the new receipt content
+    receipt_text.delete("1.0", tk.END)  # Clear the existing content
+    receipt_text.insert(tk.END, "\n".join(receipt_content))
 
 
 # Get the current date and time
 now = datetime.datetime.now()
 date_string = now.strftime("%m/%d/%Y %I:%M %p")
 
-# Generate a receipt when the script is run
+# Create a GUI window to display the receipt
+receipt_window = tk.Tk()
+receipt_window.title("Receipt")
+
+# Create a Text widget to display the receipt content
+receipt_text = tk.Text(receipt_window, wrap=tk.WORD)
+receipt_text.pack()
+
+# Create a button to generate another receipt
+generate_another_button = tk.Button(
+    receipt_window, text="Generate Another Receipt", command=generate_receipt)
+generate_another_button.pack()
+
+# Generate the initial receipt when the script is run
 generate_receipt()
+
+# Start the GUI main loop
+receipt_window.mainloop()
