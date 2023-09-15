@@ -90,7 +90,7 @@ receipt_window = tk.Tk()
 receipt_window.title("Receipt")
 
 # Create a Text widget to display the receipt content
-receipt_text = tk.Text(receipt_window, wrap=tk.WORD)
+receipt_text = tk.Text(receipt_window, wrap=tk.WORD, font=('Helvetica', 14))
 receipt_text.pack()
 
 # Create a button to generate another receipt
