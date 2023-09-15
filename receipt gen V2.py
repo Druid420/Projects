@@ -3,7 +3,7 @@ import math
 import datetime
 import tkinter as tk
 
-# List of fake item names and prices
+# List of item names and prices
 items = [
     ("Old El Paso Taco Shells", 10.99), ("Old El Paso Salsa", 6.99),
     ("Old El Paso Chili Powder", 3.99), ("Old El Paso Taco Seasoning", 5.99),
@@ -33,7 +33,7 @@ items = [
 def get_random_item():
     return random.choice(items)
 
-# Function to generate a fake receipt
+# Function to generate a receipt
 
 
 def generate_receipt():
@@ -97,5 +97,5 @@ def generate_receipt():
 now = datetime.datetime.now()
 date_string = now.strftime("%m/%d/%Y %I:%M %p")
 
-# Generate a fake receipt when the script is run
+# Generate a receipt when the script is run
 generate_receipt()
