@@ -25,7 +25,14 @@ items = [
      5.29), ("M&M's", 9.00), ("Snickers", 9.00), ("Skittles", 9.00), ("SheaMoisture Natural Infusions Moisture Shampoo", 10.00),
     ("Conditioner at Costco",
      10.00), ("Lahli Morning Protein Bites, Spinach Rustica (25.1 oz.)", 10.88),
-    ("Rubbermaid Brilliance Food Storage Containers, 36 Piece Variety Set", 69.98)]
+    ("Rubbermaid Brilliance Food Storage Containers, 36 Piece Variety Set",
+     69.98), ("Tyson Chicken Tenders", 7.99), ("Tyson Chicken Nuggets", 6.99),
+    ("Jimmy Dean Breakfast Sausage", 3.99), ("Jimmy Dean Bacon", 4.99),
+    ("State Fair Corn Dogs", 5.99), ("Tyson Any'tizers Chicken Wings", 8.99),
+    ("Tyson Crispy Chicken Strips", 6.49), ("Jimmy Dean Pancakes & Sausage", 5.49),
+    ("Jimmy Dean Delights Turkey Sausage",
+     4.99), ("State Fair Mini Corn Dogs", 4.49),
+    ("Tyson Grilled & Ready Chicken Breast Strips", 7.99), ("Jimmy Dean Delights Bacon", 5.99)]
 # Function to generate a random item
 
 
@@ -38,7 +45,7 @@ def get_random_item():
 def generate_receipt():
     # Choose a random store name
     store_names = ["Walmart Altoona", "Walgreens",
-                   "Sam's Club Altoona", "Target", "Costco"]
+                   "Sam's Club Altoona", "Costco"]
     store_name = random.choice(store_names)
     item_count = random.randint(1, 6)
 
