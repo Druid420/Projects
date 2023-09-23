@@ -108,7 +108,6 @@ receipt_text = tk.Text(receipt_window, wrap=tk.WORD, font=('Helvetica', 14))
 receipt_text.pack()
 
 # Create a button to generate another receipt
-# Create a button to generate another receipt
 generate_another_button = tk.Button(
     receipt_window, text="Generate Another Receipt", command=generate_receipt)
 generate_another_button.pack(side=tk.RIGHT, padx=10)
