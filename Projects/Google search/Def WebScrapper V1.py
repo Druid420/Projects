@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 #Ask for user input
-#print('Enter the Word(s) you would like the Definitons for.\nType "done" when you have entered all the words.')
+print('Enter the Word you would like the Definiton for.\nType "done" when you have entered all the words.')
 word = input('Enter the Word: ')
 
 #Get website's HTML code
