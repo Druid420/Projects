@@ -17,7 +17,7 @@ soup = BeautifulSoup(html.content, 'html.parser')
 results_def = soup.find_all('div', class_= 'BNeawe s3v9rd AP7Wnd')
 
 
-#Get 
+#Get Part of Speech, Definition, and Example Sentence
 data = results_def[0].text
 split_data = data.split('.')
 p1 = data.split("\n")
