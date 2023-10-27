@@ -5,12 +5,12 @@ import tkinter as tk
 
 #  List of item names and prices
 items = [
-    ("Old El Paso Taco Shells", 10.99), ("Old El Paso Salsa", 6.99),
-    ("Old El Paso Chili Powder", 3.99), ("Old El Paso Taco Seasoning", 5.99),
-    ("Old El Paso Refried Beans", 8.99), ("Old El Paso Enchilada Sauce", 5.99),
+    ("Old El Paso Taco Shells", 16.00), ("Old El Paso Salsa", 16.00),
+    ("Old El Paso Chili Powder", 16.00), ("Old El Paso Taco Seasoning", 16.00),
+    ("Old El Paso Refried Beans", 16.00), ("Old El Paso Enchilada Sauce", 16.00),
     ("Gatorade Frost Thirst Quencher", 1.99),
     ("Gatorade Fierce Thirst Quencher", 1.99),
-    ("Gatorade X-Factor Thirst Quencher", 1.99), ("Snickers Bar", 1.19),
+    ("Gatorade X-Factor Thirst Quencher", 1.99), ("Snickers Bar", 3.99),
     ("Skittles Original Fruit Candy", 1.79), ("Pepsi Cola", 1.99),
     ("Mountain Dew", 1.99), ("Lays Classic Potato Chips", 1.99),
     ("Doritos Nacho Cheese Chips", 1.99),
@@ -85,7 +85,7 @@ def generate_receipt():
     receipt_content.append("Date: " + date_string)
     receipt_content.append("----------------")
     for item in receipt_items:
-        receipt_content.append("Item: " + item[0])
+        receipt_content.append(item[0])
         receipt_content.append("Price: " + "${:.2f}".format(item[1]))
         receipt_content.append("----------------")
     receipt_content.append("Subtotal: " + "${:.2f}".format(subtotal))
