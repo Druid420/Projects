@@ -5,9 +5,9 @@ import tkinter as tk
 
 #  List of item names and prices
 items = [
-    ("Old El Paso Taco Shells", 16.00), ("Old El Paso Salsa", 16.00),
-    ("Old El Paso Chili Powder", 16.00), ("Old El Paso Taco Seasoning", 16.00),
-    ("Old El Paso Refried Beans", 16.00), ("Old El Paso Enchilada Sauce", 16.00),
+    ("Old El Paso Taco Shells", 6.00), ("Old El Paso Sause", 6.00),
+    ("Old El Paso Chili Powder", 6.00), ("Old El Paso Taco Seasoning", 6.00),
+    ("Old El Paso Refried Beans", 6.00), ("Old El Paso Enchilada Sauce", 6.00),
     ("Gatorade Frost Thirst Quencher", 1.99),
     ("Gatorade Fierce Thirst Quencher", 1.99),
     ("Gatorade X-Factor Thirst Quencher", 1.99), ("Snickers Bar", 3.99),
@@ -25,14 +25,18 @@ items = [
      5.29), ("M&M's", 9.00), ("Snickers", 9.00), ("Skittles", 9.00), ("SheaMoisture Natural Infusions Moisture Shampoo", 10.00),
     ("Conditioner at Costco",
      10.00), ("Lahli Morning Protein Bites, Spinach Rustica (25.1 oz.)", 10.88),
-    ("Rubbermaid Brilliance Food Storage Containers, 36 Piece Variety Set",
-     69.98), ("Tyson Chicken Tenders", 7.99), ("Tyson Chicken Nuggets", 6.99),
+    ("Tyson Chicken Tenders", 7.99), ("Tyson Chicken Nuggets", 6.99),
     ("Jimmy Dean Breakfast Sausage", 3.99), ("Jimmy Dean Bacon", 4.99),
     ("State Fair Corn Dogs", 5.99), ("Tyson Any'tizers Chicken Wings", 8.99),
     ("Tyson Crispy Chicken Strips", 6.49), ("Jimmy Dean Pancakes & Sausage", 5.49),
     ("Jimmy Dean Delights Turkey Sausage",
      4.99), ("State Fair Mini Corn Dogs", 4.49),
-    ("Tyson Grilled & Ready Chicken Breast Strips", 7.99), ("Jimmy Dean Delights Bacon", 5.99)]
+    ("Tyson Grilled & Ready Chicken Breast Strips", 7.99), ("Jimmy Dean Delights Bacon", 5.99), ("Totino's Pizza Rolls", 9.99), ("Totino's Party Pizza Pack", 9.99),
+    ("Tostitos Chips", 9.99), ("Tostitos Cheese Dip", 9.99), ("Tostitos Salsa Dip", 9.99), ("Axe Face Care", 9.99),     ("Dove Men+Care Face Care", 3.99),
+    ("Dove Beauty Cream Bar", 2.49), ("Axe Body Spray", 4.99), ("Lipton Green Tea", 3.79), ("Lipton Black Tea", 2.99), ("Hellmann's Mayonnaise", 2.29),
+    ("Vaseline Intensive Care Lotion", 4.49), ("Tresemme Shampoo", 5.99), ("Tresemme Conditioner", 5.99), ("Suave Essentials Shampoo", 1.99), 
+    ("Suave Essentials Conditioner", 1.99), ("Knorr Chicken Bouillon Cubes", 3.49), ("Knorr Tomato Bouillon with Chicken Flavor", 3.49), ("Breyers Ice Cream", 4.79),
+    ("Ben & Jerry's Ice Cream", 5.49), ("Q-tips Cotton Swabs", 2.99)]
 
 # Function to generate a random item
 
@@ -41,9 +45,7 @@ def get_random_item():
     return random.choice(items)
 
 
-# Initialize the date_string with the current date and time
-now = datetime.datetime.now()
-date_string = now.strftime("%m/%d/%Y %I:%M %p")
+
 
 # Function to generate a receipt
 
@@ -53,7 +55,7 @@ def generate_receipt():
     store_names = ["Walmart Altoona", "Walgreens",
                    "Sam's Club Altoona", "Costco"]
     store_name = random.choice(store_names)
-    item_count = random.randint(1, 6)
+    item_count = random.randint(1, 5)
 
     # Calculate the subtotal and tax rate
     subtotal = 0
@@ -73,9 +75,18 @@ def generate_receipt():
     total = round(subtotal + tax, 2)
     subtotal = round(subtotal, 2)  # Round the subtotal to two decimal places
 
-    # Calculate a random date and time within the last 12 days
-    days_offset = random.randint(1, 12)
+    # Calculate a random date and time within the last 13 days
+    now = datetime.datetime.now()
+    days_offset = random.randint(1, 13)
     random_date = now - datetime.timedelta(days=days_offset)
+
+    # Generate random hours, minutes, and seconds
+    random_hours = random.randint(0, 23)
+    random_minutes = random.randint(0, 59)
+    random_seconds = random.randint(0, 59)
+
+    random_date = random_date.replace(hour=random_hours, minute=random_minutes, second=random_seconds)
+
     date_string = random_date.strftime("%m/%d/%Y %I:%M %p")
 
     # Build the receipt content as a string
