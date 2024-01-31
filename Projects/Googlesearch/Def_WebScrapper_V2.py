@@ -36,7 +36,6 @@ for word in words:
     pos = p1[0]
     defin = p3_def[0]
     examp = p3_ex[1]
-    #num = words[word]
     #Print results
     print('\n\nWord:', word, '\nPart of Speech:', pos, '\nDefinition:', defin + '.', '\nExample:', examp + '.')
   except:
