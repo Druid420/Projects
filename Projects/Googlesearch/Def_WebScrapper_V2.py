@@ -39,6 +39,10 @@ for word in words:
     #Print results
     print('\n\nWord:', word, '\nPart of Speech:', pos, '\nDefinition:', defin + '.', '\nExample:', examp + '.')
   except:
+    #adds failed words to a list of failed words
     fails.append(word)
-if fails > 0:
-  print("Failed word(s): ", fails)
+
+if len(fails) > 0:
+  print("\n\nThe following words were not successful: ")
+  for i in fails:
+    print(i)
