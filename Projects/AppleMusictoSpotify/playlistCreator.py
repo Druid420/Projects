@@ -8,10 +8,11 @@ from getSongNames import getSongNames
 
 load_dotenv()
 
-
+client_id = os.getenv("client_id")
+client_secret = os.getenv("client_secret")
 scope = 'playlist-modify-public' 
 username = '31zxspvtemgw2yenenmxiquywwnm'
-token = SpotifyOAuth(scope=scope, username=username)
+token = SpotifyOAuth(client_id=client_id, client_secret=client_secret, redirect_uri='http://localhost/', scope=scope, username=username)
 spotifyObject = spotipy.Spotify(auth_manager = token)
 
 #create the playlist
