@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "PlaylistDownloader"
+version = "0.1.0"
+description = "Donwload spotify playlist"
+authors = ["Druid420 <81491453+Druid420@users.noreply.github.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+spotipy = "^2.24.0"
+spotify = "^0.10.2"
+requests = "^2.32.3"
+python-dotenv = "^1.0.1"
+ytmdl = "^2024.4.14"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
