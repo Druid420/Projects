@@ -42,13 +42,16 @@ def get_songs_spotify():
         track = item["track"]
         song_name = track["name"]
         artist_name = track["artists"][0]["name"]  # Get the first artist's name
-        songs.append((song_name, artist_name))
+        songs.append((song_name, artist_name)) 
         print(f"{i}: {song_name} by {artist_name}")
     return songs
 
+#Use os to downlaod songs
 def download_song(song_name, artist_name):
-    command = f"ytmdl --nolocal --quiet '{song_name}' --artist '{artist_name}'"
+    command = f'ytmdl --nolocal --quiet "{song_name}" --artist "{artist_name}" --ignore-errors'
+    print (command)
     os.system(command)
+
 
 
 songs = get_songs_spotify()
