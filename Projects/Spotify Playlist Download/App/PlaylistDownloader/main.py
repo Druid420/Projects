@@ -55,3 +55,6 @@ songs = get_songs_spotify()
 if songs:
     for song_name, artist_name in songs:
         download_song(song_name, artist_name)
+
+
+#add way to stop thing
