@@ -539,6 +539,16 @@ files = [
 test = ["pytest (>=6)"]
 
 [[package]]
+name = "ffmpeg"
+version = "1.4"
+description = "ffmpeg python package url [https://github.com/jiashaokun/ffmpeg]"
+optional = false
+python-versions = "*"
+files = [
+    {file = "ffmpeg-1.4.tar.gz", hash = "sha256:6931692c890ff21d39938433c2189747815dca0c60ddc7f9bb97f199dba0b5b9"},
+]
+
+[[package]]
 name = "ffmpeg-python"
 version = "0.2.0"
 description = "Python bindings for FFmpeg - with complex filtering support"
@@ -1464,4 +1474,4 @@ requests = ">=2.22"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "955d0f26d9202f6f36b54e70bd7c8a0453b9cd8b620dffcd3a902b36f6b77646"
+content-hash = "a8a427cefc1428bf0a50b14c4a8e0705c875eb94ee6fe70011542e8a0890aec9"
