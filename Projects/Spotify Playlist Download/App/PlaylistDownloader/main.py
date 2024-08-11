@@ -48,7 +48,7 @@ def get_songs_spotify():
 
 #Use os to downlaod songs
 def download_song(song_name, artist_name):
-    command = f'ytmdl --nolocal --quiet "{song_name}" --artist "{artist_name}" --ignore-errors'
+    command = f'ytmdl --nolocal --quiet "{song_name}" --artist "{artist_name}" --ignore-errors --format "m4a"'
     print (command)
     os.system(command)
 
@@ -61,3 +61,4 @@ if songs:
 
 
 #add way to stop thing
+#Modify to give direct spotify song_id instead of song name and artist (--spotifty-id SPOTIFY ID)
