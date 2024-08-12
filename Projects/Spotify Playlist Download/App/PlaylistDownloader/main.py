@@ -1,9 +1,10 @@
 import requests
 from requests import *
-import json
 import os
 from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv
+import time
+from pynput import keyboard
 
 # Load env file
 load_dotenv()
@@ -53,12 +54,30 @@ def download_song(song_name, artist_name):
     os.system(command)
 
 
+def on_press(key):
+    global stop_download #create global variable to stop download
+    try:
+        if key.char == 'q':
+            stop_download = True # stop download when "q" pressed
+            return False  # Stop listener
+    except AttributeError:
+        pass
+
+# Global flag to stop the download
+stop_download = False
 
 songs = get_songs_spotify()
 if songs:
-    for song_name, artist_name in songs:
+    # Start the keyboard listener to listen for key press while loop runs
+    listener = keyboard.Listener(on_press=on_press)
+    listener.start()
+
+    for song_name, artist_name in songs: #stops if key pressed or else proceeds
+        if stop_download:
+            break
         download_song(song_name, artist_name)
+        time.sleep(0.5)
 
+    listener.join()  # Ensure the listener thread finishes
 
-#add way to stop thing
-#Modify to give direct spotify song_id instead of song name and artist (--spotifty-id SPOTIFY ID)
+print("Script ended.")
