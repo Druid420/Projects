@@ -9,11 +9,11 @@ packages = [{ include = "PlaylistDownloader" }]
 [tool.poetry.dependencies]
 python = "^3.10"
 spotipy = "^2.24.0"
-spotify = "^0.10.2"
 requests = "^2.32.3"
 python-dotenv = "^1.0.1"
 ytmdl = "^2024.4.14"
 ffmpeg = "^1.4"
+pynput = "^1.7.7"
 
 
 [build-system]
