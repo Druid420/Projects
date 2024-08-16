@@ -81,3 +81,5 @@ if songs:
     listener.join()  # Ensure the listener thread finishes
 
 print("Script ended.")
+
+#add: downloads get zipped then user prompted to select download location
