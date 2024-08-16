@@ -1,2 +1,6 @@
 .cache
 Projects/Spotify Playlist Download/App/PlaylistDownloader/.env
+.DS_Store
+Projects/.DS_Store
+Projects/Spotify Playlist Download/App/.DS_Store
+Projects/Spotify Playlist Download/.DS_Store
