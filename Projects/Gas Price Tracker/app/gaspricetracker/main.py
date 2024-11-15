@@ -1,37 +1,18 @@
 import requests
+from bs4 import BeautifulSoup
+import re
 
+#get user zipcode and request fuel type
+zipcode = input("What zipcode? ")
+#fuel_type = input("What fuel type? ")
 
-#exposed gasbuddy GraphQL endpoint
-url = 'https://www.gasbuddy.com/graphql'
+#url
+url = (f"https://www.gasbuddy.com/home?search={zipcode}&fuel=1&maxAge=0&method=all")
+html = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"})
 
-#Set headers
-headers = {
-  "Content-Type": "application/json",
-  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-}
+soup = BeautifulSoup(html.content, 'html.parser')
 
-#JSON payload sent to server
-payload = {
-    "variables": {
-      "search": "21502"
-    },
-    "query": """
-        query locationBySearchTerm($search: String) {
-            locationBySearchTerm(search: $search) {
-                trends {
-                    areaName
-                    country
-                    today
-                    todayLow
-                }
-            }
-        }
-    """,
+#find all a tags with gas station names
+station_names = [name.text for name in soup.findAll('a', href=re.compile("/station/"))]
 
-  }
-
-#send POST request with JSON data
-response = requests.post(url, json=payload, headers = headers)
-
-print(response.status_code)
-print(response.text)
+print(station_names)
