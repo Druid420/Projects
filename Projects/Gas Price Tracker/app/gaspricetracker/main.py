@@ -9,7 +9,7 @@ zipcode = input("What zipcode? ")
 #url
 url = (f"https://www.gasbuddy.com/home?search={zipcode}&fuel=1&maxAge=0&method=all")
 
-#get HTMl to parse
+# Fetch raw HTML content and turn it into parsable HTML using beautifulsoup
 response = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"})
 soup = BeautifulSoup(response.content, 'html.parser')
 
