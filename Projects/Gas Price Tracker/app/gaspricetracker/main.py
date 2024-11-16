@@ -8,11 +8,12 @@ zipcode = input("What zipcode? ")
 
 #url
 url = (f"https://www.gasbuddy.com/home?search={zipcode}&fuel=1&maxAge=0&method=all")
-html = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"})
 
-soup = BeautifulSoup(html.content, 'html.parser')
+#get HTMl to parse
+response = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"})
+soup = BeautifulSoup(response.content, 'html.parser')
 
-#find all a tags with gas station names
+#find all <a> tags with gas station names
 station_names = [name.text for name in soup.findAll('a', href=re.compile("/station/"))]
 
 print(station_names)
