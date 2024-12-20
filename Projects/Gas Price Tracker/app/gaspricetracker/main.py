@@ -2,6 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 import re
 from tinydb import TinyDB, Query
+from dotenv import load_dotenv
+import os
+from telegram import Bot
+import asyncio
+
+load_dotenv()
 
 db = TinyDB("db.json")
 zipcode = 21502
@@ -41,27 +47,29 @@ def insertData():
         print("Can't do that! Something's in there!")
         
 def updateData():
+    #runs getData() function then adds any updated data to the database then sends telegram message
     for station, latest_price, address in getData():
       for store_info in db.search(data.id.exists()):
-          if store_info['id'] == station+address:
-              if latest_price != store_info['price']:
-                  db.update({'price': latest_price}, data.id == station+address)
-                  print(f'Price updated for {station}: {store_info["price"]} --> {latest_price}')
-              else:
-                  print(f'Price for {station} remained the same: {latest_price}')
+        if (store_info['id'] == station+address) and (latest_price != store_info['price']) and (latest_price != '- - -') :
+                # Update data
+                db.update({'price': latest_price}, data.id == station+address)
+                print(f'Price updated for {station}: {store_info["price"]} --> {latest_price}')
+                # Send message
+                asyncio.run(send_telegram_message(f'Price updated for {station} at {address}: {store_info["price"]} --> {latest_price}')) 
+        else:
+            print(f'Price for {station} remained the same: {latest_price}')
 
-def sendMessage():
-    msg = EmailMessage()
-    msg.set_content('lets get a bag.')
+# async function runs func while allowing flow on program to continue
+async def send_telegram_message(message_content):
+    try:
+        bot_token = os.getenv("BOT_TOKEN")
+        bot = Bot(token=bot_token)
+        chat_id = os.getenv("chatId")
 
-    msg['From'] = senderEmail # 'email@address.com'
-    msg['To'] = gatewayAddress  # '1112223333@vmobl.com'
-    msg['Subject'] = 'Finance Family'
+        # Send the message asynchronously
+        await bot.send_message(chat_id=chat_id, text=message_content)
+        print("Message sent successfully!")
+    except Exception as e:
+        print(f"Failed to send message: {e}")
 
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login(senderEmail, appKey)
-
-    server.send_message(msg)
-    server.quit()
 updateData()
