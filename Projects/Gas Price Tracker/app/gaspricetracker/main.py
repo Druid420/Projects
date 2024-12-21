@@ -35,6 +35,8 @@ def getData():
     
 
     print("Successfully retreived Data!")
+    print(gas_stations)
+    print(addresses)
     return zip(gas_stations, prices, addresses)
 
 def insertData():
@@ -47,17 +49,20 @@ def insertData():
         print("Can't do that! Something's in there!")
         
 def updateData():
-    #runs getData() function then adds any updated data to the database then sends telegram message
+    #runs getData() function then adds any updated data to the database then sends telegram message (if it is at one of the locations)
     for station, latest_price, address in getData():
       for store_info in db.search(data.id.exists()):
-        if (store_info['id'] == station+address) and (latest_price != store_info['price']) and (latest_price != '- - -') :
+        if (store_info['id'] == station+address)  and ((store_info['id'] == "Sheetz210 Greene St Cumberland, MD") or (store_info['id'] == "7-Eleven400 Maryland Ave Cumberland, MD") or (store_info['id'] == "Sheetz2045 Bedford St Cumberland, MD") or (store_info['id'] == "Pit 'N' Go361 Frederick St Cumberland, MD")):
+            if (latest_price != '- - -') and (latest_price != store_info['price']):
                 # Update data
                 db.update({'price': latest_price}, data.id == station+address)
                 print(f'Price updated for {station}: {store_info["price"]} --> {latest_price}')
                 # Send message
                 asyncio.run(send_telegram_message(f'Price updated for {station} at {address}: {store_info["price"]} --> {latest_price}')) 
-        else:
-            print(f'Price for {station} remained the same: {latest_price}')
+            else:
+                print(f'Price for {station} at {address}: {store_info['price']}') 
+                asyncio.run(send_telegram_message(f'Price for {station} at {address}: {store_info["price"]}'))
+        
 
 # async function runs func while allowing flow on program to continue
 async def send_telegram_message(message_content):
@@ -71,5 +76,6 @@ async def send_telegram_message(message_content):
         print("Message sent successfully!")
     except Exception as e:
         print(f"Failed to send message: {e}")
+
 
 updateData()
